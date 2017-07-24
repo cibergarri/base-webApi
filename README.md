@@ -5,3 +5,4 @@ Features:
 -Dependency injection with Ninject.
 -Logging with NLog.
 -Swagger documentation with Swashbuckle.
+-Authentication via JWT
