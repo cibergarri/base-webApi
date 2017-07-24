@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApiTest.Intefaces
 {
-    public interface IModel
+    public interface IBaseApiModel
     {
         int Id { get; set; }
     }

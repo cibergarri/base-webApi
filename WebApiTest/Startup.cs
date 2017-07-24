@@ -15,6 +15,11 @@ using Ninject.Web.Common.OwinHost;
 using Ninject;
 using System.Reflection;
 using Ninject.Web.WebApi.OwinHost;
+using WebApiTest.Intefaces;
+using WebApiTest.Services;
+using Ninject.Web.Common;
+using Ninject.Web.WebApi;
+using System.Web;
 
 [assembly: OwinStartup(typeof(WebApiTest.Startup))]
 
@@ -38,14 +43,11 @@ namespace WebApiTest
             
 
             HttpConfiguration config = new HttpConfiguration();
-
-            //Enable swagger for generating automatic dcomentation (/swagger)
-            config.EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API"))
-                .EnableSwaggerUi();
+            SwaggerConfig.Register(config);
 
             ConfigureOAuth(app);
             WebApiConfig.Register(config);
-            
+
             app.UseErrorPage()
                .UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll) //Allow Cors Requests
                .UseNinjectMiddleware(CreateKernel) //Ninject
@@ -87,8 +89,33 @@ namespace WebApiTest
         private static StandardKernel CreateKernel()
         {
             var kernel = new StandardKernel();
-            kernel.Load(Assembly.GetExecutingAssembly());
-            return kernel;
+
+            try
+            {
+                kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
+                RegisterServices(kernel);
+
+                GlobalConfiguration.Configuration.DependencyResolver =
+                    new NinjectDependencyResolver(kernel);
+
+                //kernel.Load(Assembly.GetExecutingAssembly());
+                return kernel;
+            }
+            catch
+            {
+                kernel.Dispose();
+                throw;
+            }
+           
+        }
+
+        private static void RegisterServices(IKernel kernel)
+        {
+            kernel.Bind<IDbProvider>().To<MongoDbProvider>();//.InRequestScope();
+            kernel.Bind<ILogService>().To<NLogService>();
+            //kernel.Bind(typeof(IDbProvider)).To(typeof(MongoDbProvider)).InRequestScope();  
         }
     }
 }

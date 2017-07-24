@@ -51,7 +51,7 @@
             Provider for the default filters.
             </summary>
         </member>
-        <member name="M:Ninject.Web.WebApi.Filter.DefaultFilterProvider.#ctor(Ninject.IKernel,System.Collections.Generic.IEnumerable{System.Web.Http.Filters.IFilterProvider})">
+        <member name="M:Ninject.Web.WebApi.Filter.DefaultFilterProvider.#ctor(Ninject.IKernel,Ninject.Web.WebApi.Filter.DefaultFilterProviders)">
             <summary>
             Initializes a new instance of the <see cref="T:Ninject.Web.WebApi.Filter.DefaultFilterProvider"/> class.
             </summary>
@@ -65,6 +65,40 @@
             <param name="configuration">The configuration.</param>
             <param name="actionDescriptor">The action descriptor.</param>
             <returns>The default filters.</returns>
+        </member>
+        <member name="T:Ninject.Web.WebApi.Filter.DefaultFilterProviders">
+            <summary>
+            Keeps a reference to all default filter providers from the configuration.
+            </summary>
+        </member>
+        <member name="M:Ninject.Web.WebApi.Filter.DefaultFilterProviders.#ctor(System.Collections.Generic.IEnumerable{System.Web.Http.Filters.IFilterProvider})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ninject.Web.WebApi.Filter.DefaultFilterProviders"/> class.
+            </summary>
+            <param name="defaultFilterProviders">The default filter providers.</param>
+        </member>
+        <member name="P:Ninject.Web.WebApi.Filter.DefaultFilterProviders.DefaultFilters">
+            <summary>
+            Gets the default filter providers.
+            </summary>
+            <value>The default filter providers.</value>
+        </member>
+        <member name="T:Ninject.Web.WebApi.Filter.DefaultModelValidatorProviders">
+            <summary>
+            Keeps a reference to all default model validator providers from the configuration.
+            </summary>
+        </member>
+        <member name="M:Ninject.Web.WebApi.Filter.DefaultModelValidatorProviders.#ctor(System.Collections.Generic.IEnumerable{System.Web.Http.Validation.ModelValidatorProvider})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ninject.Web.WebApi.Filter.DefaultModelValidatorProviders"/> class.
+            </summary>
+            <param name="defaultModelValidatorProviders">The default model validator providers.</param>
+        </member>
+        <member name="P:Ninject.Web.WebApi.Filter.DefaultModelValidatorProviders.DefaultModelValidators">
+            <summary>
+            Gets the default model validator providers.
+            </summary>
+            <value>The default model validator providers.</value>
         </member>
         <member name="T:Ninject.Web.WebApi.Filter.FilterContextParameter">
             <summary>
@@ -910,7 +944,7 @@
             The default model validator providers.
             </summary>
         </member>
-        <member name="M:Ninject.Web.WebApi.Validation.NinjectDefaultModelValidatorProvider.#ctor(Ninject.IKernel,System.Collections.Generic.IEnumerable{System.Web.Http.Validation.ModelValidatorProvider})">
+        <member name="M:Ninject.Web.WebApi.Validation.NinjectDefaultModelValidatorProvider.#ctor(Ninject.IKernel,Ninject.Web.WebApi.Filter.DefaultModelValidatorProviders)">
             <summary>
             Initializes a new instance of the <see cref="T:Ninject.Web.WebApi.Validation.NinjectDefaultModelValidatorProvider"/> class.
             </summary>
@@ -1041,7 +1075,7 @@
         </member>
         <member name="T:Ninject.Web.WebApi.WebApiModule">
             <summary>
-            Defines the bindings and plugins of the MVC web extension.
+            Defines the bindings and plugins of the WebApi extension.
             </summary>
         </member>
         <member name="M:Ninject.Web.WebApi.WebApiModule.Load">

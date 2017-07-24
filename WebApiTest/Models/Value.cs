@@ -8,7 +8,7 @@ using System.Web;
 namespace WebApiTest.Models
 {
 
-    public class Value : BaseModel
+    public class Value : BaseApiModel
     {
         public string value { get; set; }
     }

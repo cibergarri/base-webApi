@@ -122,10 +122,16 @@
       <HintPath>..\packages\Ninject.Web.Common.OwinHost.3.2.3.0\lib\net45-full\Ninject.Web.Common.OwinHost.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.Web.WebApi.3.2.0.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+      <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.WebApi.OwinHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.WebApi.OwinHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.OwinHost.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Mongo, Version=4.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.Mongo.4.4.0.53\lib\net45\NLog.Mongo.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -284,18 +290,24 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AudienceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Auth\AuthContext.cs" />
     <Compile Include="Auth\AuthRepository.cs" />
     <Compile Include="Entities\Audience.cs" />
-    <Compile Include="Intefaces\IModel.cs" />
+    <Compile Include="Helpers\BaseApiController.cs" />
+    <Compile Include="Helpers\MongoDbAutoIncrementalHelper.cs" />
+    <Compile Include="Intefaces\IBaseApiModel.cs" />
+    <Compile Include="Intefaces\IDbProvider.cs" />
+    <Compile Include="Intefaces\ILogService.cs" />
     <Compile Include="Models\AudienceModel.cs" />
     <Compile Include="Models\AudienceStore.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\Value.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\NLogService.cs" />
     <Compile Include="Services\MongoDbProvider.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -327,6 +339,9 @@
     <Content Include="App_Start\Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="App_Start\Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -386,7 +401,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53920</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53920/</IISUrl>
+          <IISUrl>http://localhost:53921/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

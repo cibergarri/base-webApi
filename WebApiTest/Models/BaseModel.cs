@@ -6,7 +6,7 @@ using WebApiTest.Intefaces;
 
 namespace WebApiTest.Models
 {
-    public class BaseModel:IModel
+    public class BaseApiModel:IBaseApiModel
     {
         public int Id { get; set; }
     }
