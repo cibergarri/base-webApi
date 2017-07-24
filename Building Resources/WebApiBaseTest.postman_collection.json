@@ -1,0 +1,136 @@
+{
+	"id": "b4ce46d3-fee9-353c-3ae7-7bff746f908e",
+	"name": "WebApiBaseTest",
+	"description": "",
+	"order": [
+		"b27ebc96-cecb-aa88-415b-16cf4afd9086",
+		"435f8200-e5c6-a7e0-a105-ed4534ee6b43",
+		"3ffc5174-9f88-b293-a02f-65c006775016"
+	],
+	"folders": [],
+	"timestamp": 1500929960146,
+	"owner": "1873355",
+	"public": false,
+	"requests": [
+		{
+			"id": "3ffc5174-9f88-b293-a02f-65c006775016",
+			"headers": "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwic3ViIjoiYWRtaW4iLCJyb2xlIjpbIk1hbmFnZXIiLCJTdXBlcnZpc29yIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwiYXVkIjoiMDk5MTUzYzI2MjUxNDliYzhlY2IzZTg1ZTAzZjAwMjIiLCJleHAiOjE1MDA5MzIzMjQsIm5iZiI6MTUwMDkzMDUyNH0.wDuVMMJXwYNNz2CnuOfMwjsiEYkUkkrFqC4zne-faN4\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwic3ViIjoiYWRtaW4iLCJyb2xlIjpbIk1hbmFnZXIiLCJTdXBlcnZpc29yIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwiYXVkIjoiMDk5MTUzYzI2MjUxNDliYzhlY2IzZTg1ZTAzZjAwMjIiLCJleHAiOjE1MDA5MzIzMjQsIm5iZiI6MTUwMDkzMDUyNH0.wDuVMMJXwYNNz2CnuOfMwjsiEYkUkkrFqC4zne-faN4",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:53921/api/orders",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "b4ce46d3-fee9-353c-3ae7-7bff746f908e",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:53921/api/orders",
+			"description": "protected api request",
+			"descriptionFormat": "html",
+			"time": 1500931109018,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "435f8200-e5c6-a7e0-a105-ed4534ee6b43",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:53921/oauth2/token",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "b4ce46d3-fee9-353c-3ae7-7bff746f908e",
+			"data": [
+				{
+					"key": "password",
+					"value": "admin",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "admin",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "grant_type",
+					"value": "password",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_id",
+					"value": "099153c2625149bc8ecb3e85e03f0022",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:53921/oauth2/token",
+			"description": "example of JWT (token) request",
+			"descriptionFormat": "html",
+			"time": 1500930006247,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "b27ebc96-cecb-aa88-415b-16cf4afd9086",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:53921/api/values/",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "b4ce46d3-fee9-353c-3ae7-7bff746f908e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:53921/api/values/",
+			"description": "standard request to API",
+			"descriptionFormat": "html",
+			"time": 1500929987155,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n  \"value\": \"Prueba_id6\"\r\n}"
+		}
+	]
+}

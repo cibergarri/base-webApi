@@ -8,6 +8,10 @@ using WebApiTest.Services;
 
 namespace WebApiTest.Helpers
 {
+    /// <summary>
+    /// Base Api Controller Agains Database
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BaseApiController<T> : ApiController where T : class,IBaseApiModel
     {
         private readonly IDbProvider _provider;

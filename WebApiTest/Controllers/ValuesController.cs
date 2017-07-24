@@ -11,6 +11,9 @@ using WebApiTest.Services;
 
 namespace WebApiTest.Controllers
 {
+    /// <summary>
+    /// /api/values/
+    /// </summary>
     public class ValuesController : BaseApiController<Value>
     {
         public ValuesController(IDbProvider provider) :base(provider)

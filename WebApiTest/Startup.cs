@@ -43,6 +43,7 @@ namespace WebApiTest
             
 
             HttpConfiguration config = new HttpConfiguration();
+            //Swagger Registration
             SwaggerConfig.Register(config);
 
             ConfigureOAuth(app);
@@ -55,20 +56,26 @@ namespace WebApiTest
             
             //app.UseWebApi(config);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
         public void ConfigureOAuth(IAppBuilder app)
         {
             var issuer = ConfigurationManager.AppSettings["issuer"];
             var secret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["secret"]);
             //app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
-            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
-            {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/oauth2/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat(issuer)
-            };
+            OAuthAuthorizationServerOptions OAuthServerOptions = 
+                new OAuthAuthorizationServerOptions()
+                {
+                    AllowInsecureHttp = true,
+                    TokenEndpointPath = new PathString("/oauth2/token"),
+                    AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                    Provider = new CustomOAuthProvider(),
+                    AccessTokenFormat = new CustomJwtFormat(issuer)
+                };
 
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
@@ -76,7 +83,7 @@ namespace WebApiTest
             var jwtBearerAuthenticationOptions = new JwtBearerAuthenticationOptions
             {
                 AuthenticationMode = AuthenticationMode.Active,
-                AllowedAudiences = new[] { "Any" },
+                AllowedAudiences = new[] { ConfigurationManager.AppSettings["server_audience"] },
                 IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
                {
                     new SymmetricKeyIssuerSecurityTokenProvider(issuer, secret)

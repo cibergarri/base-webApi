@@ -11,6 +11,9 @@ using WebApiTest.Models;
 
 namespace WebApiTest.Controllers
 {
+    /// <summary>
+    /// Controller for creating users to sql Identity Auth
+    /// </summary>
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {

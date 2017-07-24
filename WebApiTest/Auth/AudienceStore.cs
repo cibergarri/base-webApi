@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using WebApiTest.Entities;
 
-namespace WebApiTest.Models
+namespace WebApiTest.Auth
 {
     public static class AudiencesStore
     {
@@ -16,10 +17,13 @@ namespace WebApiTest.Models
 
         static AudiencesStore()
         {
-            AudiencesList.TryAdd("099153c2625149bc8ecb3e85e03f0022",
+            var audience = ConfigurationManager.AppSettings["server_audience"];
+
+            //Demo audience:
+            AudiencesList.TryAdd(audience,
                                 new Audience
                                 {
-                                    ClientId = "099153c2625149bc8ecb3e85e03f0022",
+                                    ClientId = audience,
                                     Base64Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw",
                                     Name = "ResourceServer.Api 1"
                                 });
